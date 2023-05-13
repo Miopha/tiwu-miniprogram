@@ -1,0 +1,5 @@
+<view>
+  <scroll-view scroll-y="true" class="scroll-view-container">
+  <view wx:for="{{wrongQuestionsData}}" wx:key="index" class="list-view" bindtap="goto" data-index="{{index}}" data-y="{{item.y}}" data-m="{{item.m}}" data-d="{{item.d}}">{{item.y}}年{{item.m}}月{{item.d}}日(剩余{{item.questions.length}}题)</view>
+</scroll-view>
+</view>

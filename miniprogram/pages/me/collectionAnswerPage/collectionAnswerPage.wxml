@@ -1,0 +1,84 @@
+<view style="align-self: center; margin-top: 30rpx; height: 1270rpx; width: 730rpx;">
+  <!-- 答题页面 -->
+  <view wx:if="{{!overall}}">
+    <swiper style="height: 1334rpx;" bindchange="swiperIndexChanged" current="{{currentQuestion}}">
+      <block wx:for="{{questions}}" wx:for-item="questions" wx:key="index" wx:for-index="i">
+       <swiper-item>
+          <scroll-view scroll-y="true" style="height: 1270rpx;">
+            <text style="color: rgb(50,89,206); margin-right: 10rpx;">[{{(questions.MultipleChoice)?"多选":"单选"}}]</text>
+            <text>{{i+1}}.{{questions.description}}</text>
+            <view wx:for="{{questions.choice}}" wx:key="index" class="thisView" style="margin-top: 20rpx; {{((choice[i]&(1<<index))?'border: 4rpx solid blue;color: blue':'border: 4rpx solid gray; color: black')}}" bindtap="updChoice" data-questions="{{i}}" data-choice="{{index}}">
+              <text style="line-height: 50rpx;">{{charactor[index]}}.{{item}}</text>
+            </view>
+            <view style="margin-bottom: 12rpx; margin-top:12rpx">
+              <button type="primary" bindtap="verify" data-questions="{{i}}">确定</button>
+            </view>
+            <block wx:if="{{analysis[i]}}">
+                <view>
+                  <text style="color: green;">
+                正确答案：{{questions.answer&1?'A':''}}{{questions.answer&2?'B':''}}{{questions.answer&4?'C':''}}{{questions.answer&8?'D':''}}
+                  </text>
+                </view>
+              <view>
+                <text style="line-height: 30rpx; font-weight: 900;">解析：</text>
+                <text style="line-height: 30rpx;">{{questions.analysis}}</text>
+              </view>
+            </block>
+          </scroll-view>
+       </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!-- 总览 -->
+  <view wx:if="{{overall}}" style="height: 1334rpx;">
+    <scroll-view scroll-y="true" style="height: 1334rpx;">
+      <view class = "girdContainer">
+        <view wx:for="{{questions}}" wx:key="index" wx:for-index="i" class="girdView" style="border-radius: 5rpx; border: 10rpx solid green;" bindtap="changeCurrentQuestion" data-gotoQuestion="{{i}}">
+        {{i+1}}
+        </view>
+      </view>
+      <view>
+        <button type="primary" bindtap="submit">提交</button>
+      </view>
+    </scroll-view>
+  </view>
+  <!-- <button type="default" >总览</button> -->
+</view>
+<view style="height: 150rpx; background-color: white; z-index: 9999; display: flex; flex-direction: column;">
+  <view style="display: flex; flex-direction: row;">
+    <view style="height: 90rpx; width: 150rpx; display: flex; justify-content: center; align-items: center;">
+      <image style="height: 60rpx; width: 60rpx;" src="../../../images/collection.png" mode="" bindtap="collect"/>
+    </view>
+    <view style="height: 90rpx; width: 150rpx; display: flex; justify-content: center; align-items: center;">
+      <image style="height: 55rpx; width: 55rpx;" src="../../../images/report.png" mode="" bindtap="feedback"/>
+    </view>
+    <view style="height: 90rpx; width: 150rpx; display: flex; justify-content: center; align-items: center;">
+      <image bindtap="switch2Overall" style="height: 58rpx; width: 58rpx;" src="../../../images/card.png" mode=""/>
+    </view>
+    <view style="height: 90rpx; width: 150rpx; display: flex; justify-content: center; align-items: center;">
+      <image style="height: 58rpx; width: 58rpx;" src="../../../images/clock.png" mode=""/>
+    </view>
+    <view style="height: 90rpx; width: 150rpx; display: flex; justify-content: center; align-items: center;">
+      <image style="height: 58rpx; width: 58rpx;" src="cloud://cloud1-4gyz6f7obb31c71c.636c-cloud1-4gyz6f7obb31c71c-1316702279/img/icon/analysis.png" mode="" bindtap="showAnalysis"/>
+    </view>
+  </view>
+  <view style="height: 60rpx; flex-direction: flex; display: flex; justify-content: center; align-items: center;">
+    <view style="height: 60rpx; width: 150rpx;">
+      <text style="display: block; text-align: center; color: #707070;" bindtap="collect">收藏</text>
+    </view>
+    <view style="height: 60rpx; width: 150rpx;">
+      <text style="display: block; text-align: center; color: #707070;" bindtap="feedback">纠错</text>
+    </view>
+    <view style="height: 60rpx; width: 150rpx;">
+      <text style="display: block; text-align: center; color: #707070;" bindtap="switch2Overall">答题卡</text>
+    </view>
+    <view style="height: 60rpx; width: 150rpx;">
+      <text style="display: block; text-align: center; color: #707070;">{{showMin}}:{{showSec}}</text>
+    </view>
+    <view style="height: 60rpx; width: 150rpx;">
+      <text style="display: block; text-align: center; color: #707070;" bindtap="showAnalysis">答案</text>
+    </view>
+  </view>
+</view>
+<!-- <button type="warn" bindtap="test">test</button> -->
+<!-- <answer style="height: 100%;" sub="{{sub}}" belong="{{belong}}"> </answer> -->

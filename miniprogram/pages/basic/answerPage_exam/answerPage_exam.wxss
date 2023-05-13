@@ -1,0 +1,25 @@
+/* pages/basic/answerPage/answerPage.wxss */
+/* components/myAnswer/myAnswer.wxss */
+.thisView{
+  margin-top: 10rpx;
+  border-radius: 4%;
+  border: 4rpx solid var(--color--);
+}
+.girdContainer{
+  display: grid;
+  margin-top: 10rpx;
+  grid-template-columns:repeat(auto-fill,80px);/** 平铺宽度为100px的单元格 */
+  grid-template-rows: 80px;/** 设置高度为100px */
+  grid-auto-rows: 80px;/** 当容易高度不够时，多余的组件高度将怎么分配，默认的高度由单元格内容决定 */
+  justify-content: center;/** 水平居中  */
+  grid-gap: 10rpx;/** 水平和垂直间距为10rpx*/
+  padding: 10rpx;
+}
+
+.girdView{
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  border: 4rpx solid black;
+}

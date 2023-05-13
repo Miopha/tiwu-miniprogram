@@ -1,0 +1,13 @@
+.scroll-view-container{
+  margin-top: 30rpx;
+  height: 1000rpx;
+  font-size: 40rpx;
+}
+.list-view{
+  margin-bottom: 10rpx;
+  margin-left: 5rpx;
+  margin-right: 5rpx;
+  border: 3rpx solid #722F26;
+  color: #722F26;
+  border-radius: 10rpx;
+}

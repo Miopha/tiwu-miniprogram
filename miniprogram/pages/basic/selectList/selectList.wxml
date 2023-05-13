@@ -1,0 +1,14 @@
+<view class = "progressView">
+  <text>{{did}}/{{total}}</text>
+</view>
+
+<progress percent="{{percent}}" active border-radius="5" activeColor="#722F26"/>
+
+<scroll-view scroll-y="true" class="scroll-view-container">
+  <view wx:for="{{list}}" wx:key="index" class="list-view" bindtap="goto" data-belong="{{index}}">第{{index+1}}章 {{item}}-{{didOfList[index]}}/{{totalOfList[index]}}
+    <progress style="padding: 5rpx;" percent="{{percentOfList[index]}}" active border-radius="5" activeColor="#722F26"/>
+  </view>
+</scroll-view>
+
+<!-- <myProgress sub="{{sub}}"></myProgress>
+<list sub="{{sub}}"></list> -->

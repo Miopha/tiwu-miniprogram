@@ -1,0 +1,69 @@
+<view>
+  <view class='top_view'>
+    <text class='top_text'>一直在完善，从未停歇过，但是有些题目和功能可能仍然存在瑕疵，对您造成的的不便我们深表歉意\n为方便排查错误，请您详细描述错误</text>
+  </view>
+  <view class='title_view'>
+    <text class='star_text'>*</text>
+    <text>错误类型（可多选）</text>
+  </view>
+  <view class='checkbox_view'>
+    <view style="width: 100%; flex-direction: row; display: flex; margin-bottom: 45rpx;">
+      <view style="width: 50%;  flex-direction: row; display: flex;">
+        <checkbox bindtap="changeStatus" data-idx="0"/>
+        <view>{{type[0]}}</view>
+      </view>
+      <view style="width: 50%;  flex-direction: row; display: flex;">
+        <checkbox bindtap="changeStatus" data-idx="1"/>
+        <view>{{type[1]}}}</view>
+      </view>
+    </view>
+    <view style="width: 100%; flex-direction: row; display: flex; margin-bottom: 45rpx;">
+      <view style="width: 50%;  flex-direction: row; display: flex;">
+        <checkbox bindtap="changeStatus" data-idx="2"/>
+        <view>{{type[2]}}</view>
+      </view>
+      <view style="width: 50%;  flex-direction: row; display: flex;">
+        <checkbox bindtap="changeStatus" data-idx="3"/>
+        <view>{{type[3]}}</view>
+      </view>
+    </view>
+    <view style="width: 100%; flex-direction: row; display: flex; margin-bottom: 45rpx;">
+      <view style="width: 50%;  flex-direction: row; display: flex;">
+        <checkbox bindtap="changeStatus" data-idx="4"/>
+        <view>{{type[4]}}</view>
+      </view>
+      <view style="width: 50%;  flex-direction: row; display: flex;">
+        <checkbox bindtap="changeStatus" data-idx="5"/>
+        <view>{{type[5]}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='title_view'>
+    <text class='star_text'>*</text>
+    <text>详情或建议</text>
+  </view>
+  <view style="background-color: rgb(241,241,241);   margin-left: 5%; margin-right: 5%; width: 90%; height: 500rpx;">
+    <textarea bindinput="changeContent" style="width: 100%; margin-left: 20rpx; margin-top: 20rpx; margin-right: 20rpx;" value=""/>
+  </view>
+  <view class='title_view'>
+    <text>图片（选填，提供图片截图）</text>
+  </view>
+  <view class="container" style="margin-top: 2rpx;">
+    <view class="supplement-report-pic">
+      <view class="report-pic-item" wx:for="{{previewArr}}" wx:key="*this">
+        <image src="{{item}}"></image>
+        <view class="pic-item-close" data-pic="{{item}}" bindtap="delReportPic">
+          <image src="../../../images/delete.png"></image>
+        </view>
+      </view>
+    <view class="report-pic-item" bindtap="chooseClientPic">
+      <image src="../../../images/choose.png"></image>
+    </view>
+      <view class="clearfix"></view>
+    </view>
+    <view style="width: 90%; margin-bottom: 50rpx;">
+      <button type="primary" bindtap="submit">提交</button>
+    </view>
+  </view>
+</view>
+

@@ -1,0 +1,271 @@
+page {
+  width: 100%;
+  height: 100%;
+}
+
+.view_contain {
+  width: 100%;
+  height: 8000rpx;
+  background: #f0eeed
+}
+
+/* 第一部分 */
+
+.view_1 {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 200px;
+  background: #a0deee;
+}
+
+.view_image_text {
+  z-index: 500;
+  width: 100%;
+  height: 500rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.image_radius {
+  margin-top: 150rpx;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin-bottom: 10rpx;
+}
+
+/* 第二部分 */
+
+.view_2 {
+  width: 100%;
+  height: 15%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+
+.view_tupianwenzi {
+  display: flex;
+  flex-direction: column;
+  width: 120rpx;
+  align-items: center;
+  margin-left: 25rpx;
+  margin-right: 25rpx;
+}
+
+.image_tupian {
+  display: flex;
+  width: 100rpx;
+  height: 100rpx;
+}
+
+/* 第三部分 */
+
+.view_3 {
+  width: 100%;
+  height: 50%;
+  /* background: #f0eeed; */
+}
+
+.list-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 80rpx;
+  margin-top: 20rpx;
+  position: relative; /*父元素位置要设置为相对*/
+  background: white;
+}
+
+.item-image {
+  width: 50rpx;
+  height: 50rpx;
+  margin: 20rpx;
+}
+
+.item-text {
+  color: gray;
+  font-size: 35rpx;
+  margin-left: 20rpx;
+}
+
+.image-jiantou {
+  width: 20rpx;
+  height: 35rpx;
+  position: absolute; /* 要约束所在位置的子元素的位置要设置成绝对 */
+  right: 0; /* 靠右调节 */
+  margin-right: 35rpx;
+}
+
+/* 黑线 使得产生阴影效果 */
+
+.line {
+  width: 100%;
+  height: 3rpx;
+  background: lightgray;
+  margin-left: 90rpx;
+}
+
+.top_view{
+  height: 550rpx;
+  position: relative;
+}
+
+.top_image{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-size: 100% 100%;
+}
+
+.user-info{
+  width: 100%;
+  height: 550rpx;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+}
+
+.updBtn{
+  display: flex;
+  flex-direction: row;
+  border-color: rgb(19,34,122);
+  border-width: 3rpx;
+  border-style: double;
+  border-radius: 30rpx;
+}
+
+.updBtnText{
+  font-weight: 900;
+  text-align: center;
+  display: block;
+  margin-right: 10rpx;
+  margin-left: 5rpx;
+  color:rgb(19,34,122)
+}
+
+.updBtnImage{
+  height: 30rpx;
+  width: 30rpx;
+  align-self: center;
+  margin-left: 10rpx;
+}
+
+.userName{
+  color: rgb(115,197,192);
+  font-weight: 900;
+  margin-bottom: 10rpx;
+}
+
+.dataVisualization{
+  background-color: white;
+  height: 750rpx;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 50rpx;
+  border-radius: 10rpx;
+}
+
+.container {
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+} 
+
+ec-canvas {
+  width: 100%;
+  height: 620rpx;
+}
+
+.buttons_view{
+  background-color: white;
+  height: 500rpx;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 50rpx;
+  border-radius: 20rpx;
+}
+
+.common_button{
+  height: 100rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  border-bottom-color: rgb(240,238,237);
+  border-bottom-width: 3rpx;
+  border-bottom-style: solid;
+}
+
+.button_img{
+  height: 40rpx;
+  width: 40rpx;
+  align-self: center;
+  display: block;
+  margin-left: 20rpx;
+}
+
+.button_text{
+  color: gray;
+  font-weight: 400;
+  text-align: center;
+  display: block;
+  align-self: center;
+  margin-left: 20rpx;
+}
+
+.button_switch{
+  align-self: center;
+  margin-left: 200rpx;
+}
+
+.recommadation_view{
+  background-color: white;
+  height: 500rpx;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 50rpx;
+  border-radius: 20rpx;
+}
+
+.recommadation{
+  height: 100rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.rank_view{
+  background-color: white;
+  height: 500rpx;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 50rpx;
+  border-radius: 20rpx;
+}
+
+.right_align{
+  display: block;
+  text-align: right;
+  justify-content: flex-end;
+}
+
+.rank_list{
+  justify-content: space-between;
+  align-items: center;
+  height: 80rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}

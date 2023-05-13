@@ -1,0 +1,12 @@
+<view class="userInfo">
+  <text class="top-text">更新头像昵称</text>
+  <!-- <image class="image_radius" src="{{avatarSrc}}" /> -->
+  <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+    <image class="avatar image_radius" src="{{avatarSrc}}"></image>
+  </button> 
+  <input type="nickname" class="weui-input infoText" placeholder="请输入昵称" bindinput="setUserName" value="{{userName}}"/>
+  <input type="text" class="infoText" placeholder="请输入学校" bindinput="setSchool" value="{{school}}"/>
+  <input type="text" class="infoText" placeholder="请输入邮箱" bindinput="setEMail" value="{{email}}"/>
+  <button type="primary" class="confirm" bindtap="submit">提交</button>
+  <button type="warn" class="reset" bindtap="delete">重置</button>
+</view>
