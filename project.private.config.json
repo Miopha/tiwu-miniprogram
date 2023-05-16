@@ -142,6 +142,20 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/me/aboutUs/aboutUs",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/basic/randomExam/randomExam",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

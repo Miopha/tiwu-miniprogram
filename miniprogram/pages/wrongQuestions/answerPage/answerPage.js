@@ -79,10 +79,11 @@ Page({
   },
   // 更新所选状态
   updChoice(e){
-    let thisQ = e.target.dataset.questions;
+    var id = (Number)(e.currentTarget.id)
+    var thisQ = Math.floor(id/4);
     // 此题目已经被答过
     if(this.data.analysis[thisQ]) return 0;
-    let thisC = e.target.dataset.choice;
+    var thisC = id%4;
     if(this.data.questions[thisQ].multipleChoice){
       this.setData({
         ['choice['+thisQ+']'] : this.data.choice[thisQ]^(1<<thisC)

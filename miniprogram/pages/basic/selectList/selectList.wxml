@@ -1,13 +1,30 @@
-<view class = "progressView">
-  <text>{{did}}/{{total}}</text>
+<view class="progressconter">
+    <view class = "progressView">
+      <text>{{did}}/{{total}}</text>
+    </view>
+    <view class="progress_border">
+        <progress percent="{{percent}}" active border-radius="5"/>
+    </view>
 </view>
-
-<progress percent="{{percent}}" active border-radius="5" activeColor="#722F26"/>
-
 <scroll-view scroll-y="true" class="scroll-view-container">
-  <view wx:for="{{list}}" wx:key="index" class="list-view" bindtap="goto" data-belong="{{index}}">第{{index+1}}章 {{item}}-{{didOfList[index]}}/{{totalOfList[index]}}
-    <progress style="padding: 5rpx;" percent="{{percentOfList[index]}}" active border-radius="5" activeColor="#722F26"/>
+  <view wx:for="{{list}}" wx:key="index" class="list-view" bindtap="goto" data-belong="{{index}}">
+  <view class="funcbt_list">
+    <view style="width: 100%;">
+      第{{index+1}}章 {{item}}
+      <view class="list_text">
+        共{{totalOfList[index]}}题
+      </view>
+    </view>
+    <view class="buttom_st">
+      <button>立即刷题</button>
+    </view>
+    
   </view>
+  <view>
+      <progress style="padding: 5rpx;margin-top:20rpx;" percent="{{percentOfList[index]}}" active border-radius="5" activeColor="#1aad19"/>
+  </view>
+  </view>
+  
 </scroll-view>
 
 <!-- <myProgress sub="{{sub}}"></myProgress>

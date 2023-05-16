@@ -46,7 +46,7 @@ Page({
       success: function (res){
         if(res.confirm){
           console.log("用户点击了确定");
-          that._submitConfirmed(undone);
+          that._score();
           wx.navigateBack();
         }else if(res.cancel){
           console.log("用户点击了取消")
@@ -54,80 +54,53 @@ Page({
       }
     });
   },
-  // 把结果提交到云端，并修改数据库
-  _submitConfirmed(){
-    wx.cloud.callFunction({
-      name: "getUserInfo_subjectBelonglist",
-      data: {
-        sub: this.data.sub,
-        belong: this.data.belong,
-        userId: app.globalData.userInfo.userId
-      }
-    }).then(res=>{
-      console.log('没报错');
-      let addition = [];
-      console.log(res);
-      const questions_info = new Map();
-      try{
-        res.result.data[this.data.sub][this.data.belong].forEach(function(value,index,obj) {
-            questions_info.set(value,true);
-        });
-      }catch(e){
-        console.log("数据库不存在");
-        wx.cloud.callFunction({
-          name: "updUserInfo_subjectBelongList",
-          data: {
-            sub: this.data.sub,
-            belong: this.data.belong,
-            userId: app.globalData.userInfo.userId,
-            add: []
-          }
-        }).then(res=>{
-          console.log(res);
-        });
-      };
-      console.log("用户已做过的题目：",questions_info);
-      for(var i = 0, length = this.data.questions.length ; i < length ; ++i){
-        if(this.data.choice[i]==this.data.questions[i].answer&&!questions_info.has(this.data.questions[i]._id)){
-          addition.push(this.data.questions[i]._id);
-        }
-      };
-      console.log("用户在此次答题中做对且需要添加到数据库中的题目：",addition);
-      wx.cloud.callFunction({
-        name: "updUserInfo_subjectBelongList",
-        data: {
-          sub: this.data.sub,
-          belong: this.data.belong,
-          userId: app.globalData.userInfo.userId,
-          add: addition
-        }
-      }).then(res=>{
-         console.log("已添加",res);
-      });
+  beginLoading(){
+    this.setData({
+      isLoading : 1
     });
-    // 记录错题
-    var wrongQuestions = [], sub = [];
-    for(var i = 0 ; i < this.data.questions.length ; ++i){
-      // 没做过的题目直接跳过
-      // 错题
-      if(this.data.analysis[i]&&this.data.choice[i]!=this.data.questions[i].answer){
-        wrongQuestions.push({_id:this.data.questions[i]._id,sub:this.data.sub});
-      }
-    }
-    console.log("此次做错的题目为",wrongQuestions);
-    wx.cloud.callFunction({
-      name : "updWrongQuestions",
-      data : {
-        wrongQuestions : wrongQuestions
-      }
-    }).then(res=>{
+    wx.showLoading({
+      title : "组装试卷中",
+      mask : true
     });
+  },
+  reduceIsLoading(){
+    console.log("123213");
+    this.setData({
+      isLoading : this.data.isLoading - 1
+    });
+    if(this.data.isLoading==0) wx.hideLoading();
   },
   // 切换到总览
   switch2Overall(){
     this.setData({
       overall : !this.data.overall
     });
+  },
+  _score(){
+    var total = 0, score = 0;
+    for(var i = 0 ; i < this.data.questions.length ; ++i){
+      if(this.data.questions[i].answer==this.data.choice[i]){
+        score += this.data.questions[i]['multipleChoice']?2:1
+      }
+      total += this.data.questions[i]['multipleChoice']?2:1
+    }
+    console.log('获得分数',score,"/",total);
+    setTimeout(() => {
+      wx.showModal({
+        title: '考试完成',
+        content: '你的分数是'+score+'/'+total,
+        complete: (res) => {
+          if (res.cancel) {
+            
+          }
+      
+          if (res.confirm) {
+            
+          }
+        }
+      })
+    }, 1000);
+
   },
   // 更新所选状态
   updChoice(e){
@@ -180,45 +153,11 @@ Page({
       overall : false
     });
   },
-  // 重置此章节
-  reset(){
-    console.log("此章节重置了");
-    wx.cloud.callFunction({
-      name:"resetChapter",
-      data: {
-        userId : app.globalData.userInfo.userId,
-        sub : this.data.sub,
-        belong : this.data.belong
-      }
-    }).then(res=>{
-      console.log(res);
-    })
-  },
-  // 根据userDid，得到用户已经做过的题目
-  set(userDid){
-    console.log("userDid=",userDid);
-    var that = this;
-    var questions_info = new Map();
-    // 把用户做过的题目放入map中
-    userDid.forEach(function(value,index,obj){
-      questions_info.set(value,true);
-    });
-    // 检测当前题目是否做过
-    this.data.questions.forEach(function(value,index,obj){
-        if(questions_info.has(value._id)){
-          that.setData({
-            ['choice['+index+']'] : value.answer,
-            ['analysis['+index+']'] : true
-          });
-        }
-    });
-  },
   queryTime(){
         var that = this;
         // 获取开始时间
         var beginTime = util.formatTime(new Date());
         console.log(beginTime)
-  
         console.log("开始计时")
         //将计时器赋值给setInter
         that.data.setInter = setInterval(
@@ -304,16 +243,8 @@ Page({
   },
   collect(){
     wx.showToast({
-      title: '已收藏'
+      title: '此题目不允许收藏'
     });
-    var QID = this.data.questions[this.data.currentQuestion]['_id'];
-    console.log('收藏题目', QID);
-    wx.cloud.callFunction({
-      name: "collect",
-      data:{
-        QID: QID
-      }
-    }).then(res=>{});
   },
   feedback(){
     wx.showToast({
@@ -325,38 +256,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.beginLoading();
     this.queryTime();
-    // xiugia
-    var that = this;
-    var userDid;
-    try{
-      userDid = JSON.parse(decodeURIComponent(options.userDid));
-    }catch(e){
-      userDid = null;
-    }
-    console.log(options);
-    this.setData({
-      sub : options.sub,
-      belong : options.belong
-    });
-    console.log("进入了科目"+this.data.sub+"的第"+this.data.belong+"章");
-    console.log("这章节做过的题目为",userDid);
     wx.cloud.callFunction({
-      name : "getQuestions",
-      data: {
-        sub : this.data.sub,
-        belong : Number(this.data.belong)
-      }
+      name: "generateExamByGeneticAlgorithm"
     }).then(res=>{
+      console.log('已自动组装试卷:', res);
+      res = res.result.s
       this.setData({
-        questions : res.result.data,
-        choice : Array(res.result.data.length).fill(0),
-        analysis : Array(res.result.data.length).fill(0),
+        questions : res.problemList,
+        choice : Array(res.problemList.length).fill(0),
+        analysis : Array(res.problemList.length).fill(0),
       });
-      console.log("成功获取到题目数据：",this.data.questions);
-      if(Number(options.reset)==1) this.reset();
-      else if(Number(userDid)!=0) this.set(userDid);
-    });
+      this.reduceIsLoading();
+    })
   },
 
   /**

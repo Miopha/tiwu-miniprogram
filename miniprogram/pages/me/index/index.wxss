@@ -191,11 +191,19 @@ ec-canvas {
 
 .buttons_view{
   background-color: white;
-  height: 500rpx;
+  height: 600rpx;
   width: 90%;
   margin-left: 5%;
   margin-top: 50rpx;
   border-radius: 20rpx;
+}
+
+.upImg{
+  display: flex;
+  flex-direction:row-reverse;
+  align-content: center;
+  align-self: center;
+  margin-right: 20rpx;
 }
 
 .common_button{

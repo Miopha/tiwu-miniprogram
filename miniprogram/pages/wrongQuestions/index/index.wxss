@@ -1,13 +1,45 @@
+page{
+  background-color: rgb(240, 240, 240)
+}
+.list_text{
+  color: rgb(97, 95, 95);
+  font-size: 24rpx;
+  margin-top: 10rpx;
+}
 .scroll-view-container{
   margin-top: 30rpx;
-  height: 1000rpx;
+  height: 100%;
   font-size: 40rpx;
 }
+.funcbt_list{
+  width:100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* background: #ffffff; */
+}
+.buttom_st button{
+  width:150rpx;
+  font-size: 24rpx;
+  color: #ffffff;
+  background:#1aad19;
+  border-radius: 26rpx;
+}
+.list-conter{
+  width: 96%;
+  margin: 0 auto;
+}
 .list-view{
+  /* width: 96%;
+  margin: 20rpx auto; */
   margin-bottom: 10rpx;
   margin-left: 5rpx;
   margin-right: 5rpx;
-  border: 3rpx solid #722F26;
-  color: #722F26;
+  /* border: 3rpx solid #722F26; */
+  box-shadow:2rpx 5rpx 5rpx 2rpx #e9e4e4;
+  background-color: #ffffff;
+  color: #000000;
+  font-size:32rpx;
+  padding:40rpx;
   border-radius: 10rpx;
 }

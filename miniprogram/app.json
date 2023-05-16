@@ -1,4 +1,5 @@
 {
+  "lazyCodeLoading": "requiredComponents",
   "pages": [
     "pages/basic/index/index",
     "pages/basic/selectList/selectList",
@@ -10,7 +11,9 @@
     "pages/basic/answerPage_exam/answerPage_exam",
     "pages/me/feedback/feedback",
     "pages/me/collectionAnswerPage/collectionAnswerPage",
-    "pages/basic/dailyExercisePage/dailyExercisePage"
+    "pages/basic/dailyExercisePage/dailyExercisePage",
+    "pages/me/aboutUs/aboutUs",
+    "pages/basic/randomExam/randomExam"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

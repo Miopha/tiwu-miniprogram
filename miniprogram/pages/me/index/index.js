@@ -492,7 +492,6 @@ Page({
         dailyWrong: []
       });
       res = res.result.data;
-      console.log('已获得错题数据', res['wrongQuestions']['2023']['5']['10']);
       this.generate(res, 3);
       this.generate(res, 7);
       this.generate(res, 30);
@@ -544,6 +543,11 @@ Page({
         break;
       }
     }
+  },
+  enterAboutUs(){
+    wx.navigateTo({
+      url: "/pages/me/aboutUs/aboutUs",
+    });
   },
   enterSubAnswer(){
     if(this.data.valueSum.length<=0) return ;
@@ -619,20 +623,15 @@ Page({
       name : "getUserInfomation"
     }).then(res=>{
       var avatarSrc, userName, email, school, autoRemove;
-      try{
-        avatarSrc = res.result.data.avatarSrc;
-      }catch(e){
-        avatarSrc = defaultAvatar;
-      }
       if(res.result.data.avatarSrc){
         avatarSrc = res.result.data.avatarSrc;
       }else{
-        avatarSrc = "";
+        avatarSrc = defaultAvatar;
       }
       if(res.result.data.userName){
         userName = res.result.data.userName;
       }else{
-        userName = "";
+        userName = "未设置";
       }
       if(res.result.data.email){
         email = res.result.data.school;

@@ -56,6 +56,7 @@ Page({
       this.setData({
         wrongQuestionsData : wrongQuestionsData
       })
+      console.log(this.wrongQuestionsData)
       this.reduceIsLoading()
     });
   },
