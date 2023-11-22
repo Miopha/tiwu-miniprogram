@@ -1,0 +1,16 @@
+<view style="border-radius: 10rpx; width: 92%; margin-top: 4%; margin-left: 4%; margin-right: 4%; background-color: white;">
+  <view style="margin-top: 80rpx; margin-left: 20rpx; margin-right: 20rpx;">
+    <text style="font-weight: 900;">题悟小程序</text>
+    <text>是基于原生开发和云开发的考研政治刷题小程序，是我个人开发的一款面向全体考研备考生的小程序.\n此小程序仅用于作为广东技术师范大学的毕业设计作品，无任何商业用途.</text>
+    <image style="width: 100%;" src="cloud://cloud1-4gyz6f7obb31c71c.636c-cloud1-4gyz6f7obb31c71c-1316702279/img/aboutUs/UI.png" mode="aspectFit" />
+    <text>功能清单\n</text>
+    <text>1.答题，自动批改，查看解析\n</text>
+    <text>2.每日更新的每日练习和专项练习\n</text>
+    <text>3.个人刷题数据可视化，包括做题总数和做题正确率等\n</text>
+    <text>4.根据个人的做题记录做出智能推荐\n</text>
+    <text>5.刷题正确数排行榜和刷题正确率排行榜\n</text>
+    <text>6.错题记录\n</text>
+    <text>7.题目收藏\n</text>
+    <text>8.利用遗传算法自动组卷\n</text>
+  </view>
+</view>

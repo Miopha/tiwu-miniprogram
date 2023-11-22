@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "题悟",
+  "usingComponents": {
+    "ec-canvas": "../../../ec-canvas/ec-canvas"
+  },
+  "navigationStyle": "custom"
+}

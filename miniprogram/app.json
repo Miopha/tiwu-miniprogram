@@ -1,0 +1,48 @@
+{
+  "lazyCodeLoading": "requiredComponents",
+  "pages": [
+    "pages/basic/index/index",
+    "pages/basic/selectList/selectList",
+    "pages/basic/answerPage/answerPage",
+    "pages/wrongQuestions/answerPage/answerPage",
+    "pages/wrongQuestions/index/index",
+    "pages/me/index/index",
+    "pages/me/userInfo/userInfo",
+    "pages/basic/answerPage_exam/answerPage_exam",
+    "pages/me/feedback/feedback",
+    "pages/me/collectionAnswerPage/collectionAnswerPage",
+    "pages/basic/dailyExercisePage/dailyExercisePage",
+    "pages/me/aboutUs/aboutUs",
+    "pages/basic/randomExam/randomExam"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "刷题小程序",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "default"
+  },
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "custom": false,
+    "list": [
+      {
+        "pagePath":"pages/basic/index/index",
+        "text": "主页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-active.png"
+      },{
+        "pagePath":"pages/wrongQuestions/index/index",
+        "text": "错题库",
+        "iconPath": "images/questions.png",
+        "selectedIconPath": "images/questions-active.png"
+      },{
+        "pagePath":"pages/me/index/index",
+        "text": "我的",
+        "iconPath": "images/me.png",
+        "selectedIconPath": "images/me-active.png"
+      }
+    ]
+  }
+}

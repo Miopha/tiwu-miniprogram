@@ -1,0 +1,71 @@
+page{
+  background-color: rgb(240, 240, 240)
+}
+
+.progressView{
+  width: 750rpx;
+  height: 200rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 100rpx;
+  font-weight: bold;
+  text-align: center;
+  color:#1aad19;
+}
+.funcbt_list{
+  width:100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/* .buttom_st {
+  width: 40%;
+} */
+.buttom_st button{
+  width:150rpx;
+  font-size: 24rpx;
+  color: #ffffff;
+  background:#1aad19;
+  border-radius: 26rpx;
+}
+progress{
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+
+.scroll-view-container{
+  width: 96%;
+  margin: 0 auto;
+  margin-top: 30rpx;
+  height: 1200rpx;
+  font-size: 40rpx;
+}
+.list_text{
+  color: rgb(97, 95, 95);
+  font-size: 24rpx;
+  margin-top: 10rpx;
+}
+.progressconter{
+  width: 96%;
+  margin: 20rpx auto;
+  box-shadow:2rpx 5rpx 5rpx 2rpx #e9e4e4;
+  background-color: #ffffff;
+  border-radius:10rpx ;
+}
+.progress_border{
+  margin-bottom: 20rpx;
+}
+.list-view{
+  margin-bottom:20rpx;
+  margin-left: 5rpx;
+  margin-right: 5rpx;
+  box-shadow:2rpx 5rpx 5rpx 2rpx #e9e4e4;
+  /* border: 3rpx solid #722F26; */
+  background: #ffffff;
+  color: #000000;
+  font-size:32rpx;
+  padding:40rpx; 
+  border-radius: 10rpx;
+}

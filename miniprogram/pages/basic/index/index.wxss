@@ -1,0 +1,90 @@
+/* pages/basic/index/index.wxss */
+.text-gray{
+  color: gray;
+}
+.myRight{
+  text-align: right;
+}
+.myLeft{
+  text-align: left;
+}
+.dailyQuestionsBtn{
+  background-color: rgba(95,160,102);
+  width: 90%;
+  height: 240rpx;
+  border-radius: 25rpx;
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+  padding: 30rpx;
+  text-align: left;
+}
+
+.nav-li {
+  display: inline-block;
+  margin-left: 4%;
+  margin-top: 1%;
+  padding: 30rpx;
+  border-radius: 25rpx;
+  width: 22%;
+  height: 230rpx;
+  background-size: cover;
+  background-position: center;
+}
+
+.icon{
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.help {
+  width: 700rpx;
+  margin: 0 auto;
+}
+ 
+.help .help_item {
+  margin: 10rpx auto;
+}
+ 
+.help .help_item .title {
+  font-size: 30rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  /* background: #e2e2e2; */
+  border-bottom: 1rpx solid #eeeeee;
+  display: flex;
+}
+ 
+.help .help_item .title .title_1 {
+  width: 630rpx;
+  height: 80rpx;
+  padding-left: 20rpx;
+}
+ 
+.help .help_item .title .title_2 {
+  width: 50rpx;
+  height: 60rpx;
+  text-align: center;
+ 
+}
+ 
+.help .help_item .title .title_2 image {
+  width: 40rpx;
+  height: 40rpx;
+  margin: 10rpx auto;
+}
+ 
+.help .help_item .detail {
+  margin: 10rpx auto;
+  font-size: 25rpx;
+  line-height: 40rpx;
+  font-size: 30rpx;
+  height: 300rpx;
+  transition: height 1s;
+  -moz-transition: height 1s;
+  /* Firefox 4 */
+  -webkit-transition: height 1s;
+  /* Safari and Chrome */
+  -o-transition: height 1s;
+  /* Opera */
+  overflow: hidden;
+}

@@ -1,0 +1,168 @@
+<view class="view_contain">
+  <view class="top_view">
+    <image class="top_image" src="cloud://cloud1-4gyz6f7obb31c71c.636c-cloud1-4gyz6f7obb31c71c-1316702279/img/icon/me_bg.jpg" mode="aspectFill"/>
+    <view class="user-info">
+      <view class="view_image_text">
+        <image class="image_radius" src="{{avatarSrc}}" />
+        <text class="userName">{{userName}}</text>
+        <view class="updBtn">
+          <image class="updBtnImage" src="../../../images/update.png"/>
+          <text class="updBtnText" bindtap="goUserInfo">更新头像昵称</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 设置 -->
+  <view class="buttons_view">
+    <view class="common_button">
+      <image class="button_img" src="../../../images/wrong.png" mode="aspectFit"/>
+      <text class="button_text">错题做对时自动移除</text>
+      <switch class="button_switch" checked="{{autoRemove=='1'}}" bindchange="setAutoRemove"/>
+    </view>
+    <view class="common_button" bindtap="setClipboard">
+      <image class="button_img" src="../../../images/instrument.png" mode="aspectFit"/>
+      <text class="button_text">获取唯一ID</text>
+    </view>
+    <view style="justify-content: space-between;" class="common_button">
+      <view style="flex-direction: row; display: flex;">
+        <image class="button_img" src="../../../images/feedback.png" mode="aspectFit" bindtap="goFeedback"/>
+        <text class="button_text" bindtap="goFeedback">反馈</text>
+      </view>
+      <view class="upImg">
+        <image style="height: 50rpx; width: 50rpx;" src="../../../images/up.png" mode="aspectFit"/>
+      </view>
+    </view>
+    <view class="common_button">
+      <image class="button_img" src="cloud://cloud1-4gyz6f7obb31c71c.636c-cloud1-4gyz6f7obb31c71c-1316702279/img/icon/reset.png" mode="aspectFit" bindtap="deleteInfo"/>
+      <text class="button_text" bindtap="deleteInfo">重置账号数据</text>
+    </view>
+    <view style="justify-content: space-between;" class="common_button">
+      <view style="flex-direction: row; display: flex;">
+        <image class="button_img" src="../../../images/myCollection.png" mode="aspectFit" bindtap="enterCollection"/>
+        <text class="button_text" bindtap="enterCollection">我的收藏</text>
+      </view>
+      <view class="upImg">
+        <image style="height: 50rpx; width: 50rpx;" src="../../../images/up.png" mode="aspectFit"/>
+      </view>
+    </view>
+    <view style="justify-content: space-between;" class="common_button" bindtap="enterAboutUs">
+      <view style="flex-direction: row; display: flex;">
+        <image class="button_img" src="../../../images/aboutus.png" mode="aspectFit" />
+        <text class="button_text">关于我们</text>
+      </view>
+      <view class="upImg">
+        <image style="height: 50rpx; width: 50rpx;" src="../../../images/up.png" mode="aspectFit"/>
+      </view>
+    </view>
+  </view>
+  <!-- 每日推荐 -->
+  <view class="recommadation_view">
+    <view class="common_button">
+      <image class="button_img" src="../../../images/recomandation.png" mode="aspectFit"/>
+      <text class="button_text">每日推荐</text>
+    </view>
+    <view class="recommadation" bindtap="enterDaily">
+      <image class="button_img" src="{{daily}}" mode="aspectFit"/>
+      <text class="button_text">{{dailyFinished?"每日练习已完成":"每日练习还未完成，先去完成吧"}}</text>
+    </view>
+    <view class="common_button" bindtap="enterDailyWrong">
+      <!-- undone -->
+      <image wx:if="{{!dailyWrong[0].done||!dailyWrong[1].done||!dailyWrong[2].done}}" class="button_img" src="../../../images/mission_unfinished.png" mode="aspectFit"/>
+      <text wx:if="{{!dailyWrong[0].done||!dailyWrong[1].done||!dailyWrong[2].done}}" class="button_text">复习<text style="color: rgb(99,109,167);" wx:for="{{dailyWrong}}" wx:key="index" wx:if="{{!item.done}}">{{item.date}}</text>做错的题目</text>
+      <!-- done -->
+      <image wx:if="{{dailyWrong[0].done&&dailyWrong[1].done&&dailyWrong[2].done}}" class="button_img" src="../../../images/mission_finished.png" mode="aspectFit"/>
+      <text wx:if="{{dailyWrong[0].done&&dailyWrong[1].done&&dailyWrong[2].done}}" class="button_text">错题已全复习完</text>
+    </view>
+    <view class="recommadation" bindtap="enterSubAnswer">
+      <image class="button_img" src="cloud://cloud1-4gyz6f7obb31c71c.636c-cloud1-4gyz6f7obb31c71c-1316702279/img/icon/aclimation.png" mode="aspectFit"/>
+      <text class="button_text" wx:if="{{valueSumLen==0?false:true}}">重做{{subMapping[valueSum[0].sub]}}中的第{{valueSum[0].belongVis}}章</text>
+      <text class="button_text" wx:if="{{valueSumLen==0?true:false}}">还没有推荐</text>
+    </view>
+    <view class="recommadation">
+      <image class="button_img" src="cloud://cloud1-4gyz6f7obb31c71c.636c-cloud1-4gyz6f7obb31c71c-1316702279/img/icon/aclimation.png" mode="aspectFit"/>
+      <text class="button_text">你应该加强对毛中特的学习，你在此科目的正确率仅为50%</text>
+    </view>
+  </view>
+  <view class="dataVisualization">
+    <swiper style="height: 100%;" vertical="true">
+      <swiper-item>
+        <view class="common_button">
+          <image class="button_img" src="../../../images/data.png" mode="aspectFit"/>
+          <text class="button_text">做题数量</text>
+        </view>
+        <view class="container">
+          <ec-canvas id="mychart-one" canvas-id="mychart-line" ec="{{ ec1 }}"></ec-canvas>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view class="common_button">
+          <image class="button_img" src="../../../images/data.png" mode="aspectFit"/>
+          <text class="button_text">正确率</text>
+        </view>
+        <view class="container">
+          <ec-canvas id="mychart-two" canvas-id="mychart-line" ec="{{ ec2 }}"></ec-canvas>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view class="common_button">
+          <image class="button_img" src="../../../images/data.png" mode="aspectFit"/>
+          <text class="button_text">科目掌握程度</text>
+        </view>
+        <view class="container">
+          <ec-canvas id="mychart-three" canvas-id="mychart-graph" ec="{{ ec3 }}"></ec-canvas>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+  <!-- <view class="dataVisualization">
+    <view class="container">
+      <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec1 }}"></ec-canvas>
+    </view>
+  </view>
+  <view class="dataVisualization">
+    <view class="container">
+      <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec2 }}"></ec-canvas>
+    </view>
+  </view>
+  <view class="dataVisualization">
+    <view class="container">
+      <ec-canvas id="mychart-dom-graph" canvas-id="mychart-graph" ec="{{ ec3 }}"></ec-canvas>
+    </view>
+  </view> -->
+  <view class="rank_view">
+    <view class="common_button">
+      <image class="button_img" src="../../../images/rank.png" mode="aspectFit"/>
+      <text class="button_text">排行榜</text>
+    </view>
+    <view>
+      <swiper>
+        <swiper-item>
+          <scroll-view>
+            <block wx:for="{{rank_ZQSL}}" wx:key="{{index}}">
+              <view class="rank_list">
+                <view style="flex-direction: row; display: flex;">
+                  <image class="button_img" src="{{item.avatarSrc}}" mode="aspectFit"/>
+                  <text class="button_text">{{item.userName}}</text>
+                </view>
+                <text class="button_text" style="margin-right: 30rpx;">做对{{item.ZQSL}}题</text>
+              </view>
+            </block>
+          </scroll-view>
+        </swiper-item>
+        <swiper-item>
+          <scroll-view>
+            <block wx:for="{{rank_JCTS}}" wx:key="{{index}}">
+              <view class="rank_list">
+                <view style="flex-direction: row; display: flex;">
+                  <image class="button_img" src="{{item.avatarSrc}}" mode="aspectFit"/>
+                  <text class="button_text">{{item.userName}}</text>
+                </view>
+                <text class="button_text" style="margin-right: 30rpx;">{{item.JCTS}}天</text>
+              </view>
+            </block>
+          </scroll-view>
+        </swiper-item>
+      </swiper>
+    </view>
+  </view>
+</view>

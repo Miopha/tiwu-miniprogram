@@ -1,0 +1,8 @@
+/* pages/me/aboutUs/aboutUs.wxss */
+page{
+  background-color: rgb(240,238,237);
+}
+
+text{
+  line-height: 60rpx;
+}

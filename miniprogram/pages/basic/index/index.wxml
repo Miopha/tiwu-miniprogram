@@ -1,0 +1,65 @@
+<view class = "myRight" style="margin-right: 5%;">
+  <text class = "text-gray">{{m}}月 {{d}}日</text>
+  <view></view>
+  <text>距离考研{{CountDownDay}}天</text>
+</view>
+<view style="margin-left: 5%;">
+  <text style="font-weight: bold; margin-bottom: 2%; font-size: 75rpx;">今天
+  </text>
+  <text class = "text-gray" style="margin-bottom: 3%; margin-top: 3%;">{{showMotto}}</text>
+</view>
+
+<button class = "dailyQuestionsBtn funcbt" style="margin-bottom: 50rpx;" bindtap="enterDailyExersice">
+  <view style="display: flex; flex-direction: column; line-height: 45rpx; color: rgba(234,235,177);">
+    <text style="font-size: 50rpx; margin-bottom: 5rpx; font-weight: bold;">\n每日练习
+    </text>
+    <text style="font-size: 23rpx; color: rgba(184,213,159); font-weight: bold;">已经坚持{{JCTS}}天</text>
+  </view>
+</button>
+<view style="margin-left: 5%; margin-top: 2%;">
+  <view style="font-weight: bold; margin-bottom: 5%; font-size: 50rpx;">特训</view>
+</view>
+<scroll-view scroll-x="true" style="white-space: nowrap; width: 100%; height: 310rpx; margin-left: 10rpx;">
+  <navigator open-type="navigate" url="/pages/basic/selectList/selectList?sub={{item.abbreviation}}" hover-class="navigator-hover"  wx:for="{{subjects}}" wx:key="index" data-sub = "{{item.abbreviation}}" class="nav-li funcbt" style="color:rgba({{item.color}}); background-color:rgba({{item.bgcolor}});">
+     <view style="display: flex; justify-content: center; align-items: center;">
+       <image src="{{item.icon}}" class="icon" ></image>
+     </view>
+     <text style="font-weight: bold;">{{item.title}}\n</text>
+    <text style="font-size: 20rpx;">占分{{item.score}}%</text>
+  </navigator>
+</scroll-view>
+<view style="margin-left: 5%; margin-top: 2%;">
+  <view style="font-weight: bold; margin-bottom: 5%; font-size: 50rpx;">试卷</view>
+</view>
+
+<view class='help' style="margin-left:50rpx">
+  <view class='help_item' bindtap="enterRandomExam">
+    <view class='title' data-index='{{index}}'>
+      <image src="../../../images/randomExam.png" mode="" style="height: 50rpx; width: 50rpx; align-items: center; align-self: center;"/>
+      <view class='title_1'>
+        <text style="font-weight: 900;">随机组卷</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='help' style="margin-left:50rpx">
+  <view class='help_item' wx:for="{{questList}}" wx:key="index" wx:for-item="exam">
+    <view class='title' data-index='{{index}}' catchtap='panel'>
+      <image src="../../../images/examination.png" mode="" style="height: 50rpx; width: 50rpx; align-items: center; align-self: center;"/>
+      <view class='title_1'>
+        <text style="font-weight: 900;">{{exam.title}}</text>
+      </view>
+      <view class='title_2' style="margin-right: 30rpx;"><image src="../../../images/{{exam.t ? 'down':'up'}}.png"></image></view>
+    </view>
+    <view class='detail' style="height:{{ exam.t?'':0}}">
+      <scroll-view style="height: 300rpx;" scroll-y="true">
+        <block wx:for="{{exam.content}}" wx:key="index">
+          <view style="height: 100rpx; border-bottom-color: gray; border-bottom-width: 2rpx; border-bottom-style: solid; display: flex; flex-direction: row;">
+            <text style="text-align: center; display: block; align-self: center; color: blue; font-weight: 500;" bindtap="enterExam" data-exam="{{exam.title}}" data-belong="{{index}}">{{item}}</text>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+</view>
